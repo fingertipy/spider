@@ -40,16 +40,12 @@ public class Rente {
                 // 10秒超时
                 connection.setConnectTimeout(10000);
                 connection.setReadTimeout(10000);
-
                 connection.setRequestProperty("Cookie", "bid=V2DRL4mfkjQ; __utmc=30149280; ll=\"118282\"; ap_v=0,6.0; __utma=30149280.99766166.1562306946.1562306946.1562576595.2; __utmz=30149280.1562576595.2.2.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; _vwo_uuid_v2=D9D4E2A5332E5A947211DB67195B046E0|f16585ce5703078b60379b23b6c2511c; _pk_ref.100001.8cb4=%5B%22%22%2C%22%22%2C1562576609%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DycPrEWSD7HPKD3Le3_o7exduYmeHJviKaSFDkIcZ_ySfiYQBn2JmESv06ar0C8V5%26wd%3D%26eqid%3Da30218e4000357c9000000065d2306da%22%5D; _pk_ses.100001.8cb4=*; __utmt=1; __yadk_uid=if3s4kXzuN3b4C2MM7pLNu0hjTSgxYbQ; _pk_id.100001.8cb4=de663b935f718c9c.1562306945.2.1562576680.1562306945.; __utmb=30149280.20.6.1562576680698");
                 connection.setRequestProperty("Host", "www.douban.com");
                 connection.setRequestProperty("Referer", "https://www.douban.com/group/longgangzufang/discussion?start=25");
                 connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36");
-
                 //连接
                 connection.connect();
-
-
                 //得到响应码
                 int responseCode = connection.getResponseCode();
 
@@ -67,7 +63,6 @@ public class Rente {
                     reader.close();
                     inputStream.close();
                     connection.disconnect();
-//	                System.out.println(returnStr);
                     Pattern p = Pattern.compile("<a href=\"([^\"]*)\" title=\"[^\"]*\" class=\"\">[^\"]*</a>");
                     Matcher m = p.matcher(returnStr);
                     while(m.find()) {
@@ -101,8 +96,6 @@ public class Rente {
                                 while ((tempLine = tempReader.readLine()) != null){
                                     tempReturnStr += tempLine + "\r\n";
                                 }
-
-
                                 Pattern p2 = Pattern.compile("\"text\": \"([^\"]*)\",\r\n" +
                                         "	\"name\": \"([^\"]*)\",\r\n" +
                                         "	\"url\": \"([^\"]*)\",\r\n" +
