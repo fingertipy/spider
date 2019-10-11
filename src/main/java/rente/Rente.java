@@ -74,7 +74,7 @@ public class Rente {
                         Thread.sleep(500);
                         try {
                             String tempUrlStr = m.group(1);
-                            System.out.println("		当前链接：" + tempUrlStr);
+                            System.out.println("当前链接：" + tempUrlStr);
                             URL tempUrl = new URL(tempUrlStr);
                             HttpURLConnection tempConnection = (HttpURLConnection)tempUrl.openConnection();
                             //设置请求方式
@@ -110,10 +110,6 @@ public class Rente {
                                         "  \"dateCreated\": \"([^\"]*)\",");
                                 Matcher m2 = p2.matcher(tempReturnStr);
                                 while(m2.find()) {
-//		                	    	System.out.println(m2.group(1));
-//		                	    	System.out.println(m2.group(2));
-//		                	    	System.out.println(m2.group(3));
-//		                	    	System.out.println(m2.group(4));
                                     stat.executeUpdate("INSERT INTO rente(title,content,releas_time,url,create_time) VALUES ('" + m2.group(2).replaceAll("[\\x{10000}-\\x{10FFFF}]", "") + "','" + m2.group(1).replaceAll("[\\x{10000}-\\x{10FFFF}]", "") + "','" + m2.group(4).replace("T"," ") + "','" + m2.group(3) + "',now());");
                                 }
                                 tempReader.close();
